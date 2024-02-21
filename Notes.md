@@ -35,4 +35,27 @@ Default, Slate, Yes
 
 * file based routing, route groups and creeating different layouts for each one of these route groups
 
+# Clerk Authentication
+* most comprehensive user management platform, sign-in-box but also complete suite of embeddable UIs, flexible APIs, and admin dashboards to authenticate and manage your users
+* name JSM_Imaginify, Email, Google, Github -> create app > copy env variables into .env.local
+* In clerk config, email > enable UserName
+* Home n> continue in docs
+
+> npm install @clerk/nextjs
+
+* wrap app with a clerk provider in base layout
+
+* middleware.ts file within src dir. keep it as it is in doc
+
+* now going to localhost:3000 will redirect to clerk authentication
+
+* auth pages are not within our routes. We would like to create those pages within our route structure so that windows appears directly within our routing structure
+* (auth)/sign-up/[[...sign-up]]/page.tsx
+* same structure for sign-in
+* in .env.local: NEXT_PUBLIC_CLERK_SIGN_IN_URL (/sign-in), NEXT_PUBLIC_CLERK_SIGN_UP_URL (/sign-up), NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL (/), NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL (/)
+* then step 5 from documentation
+
+* then customize auth page -> Branding, set Application Name and upload logo and icon
+* set the appearance of ClerkProvider
+* Note that auth component is centered thanks to user defined auth class (see globals.css) that uses uer defined flex-center class
 * 
