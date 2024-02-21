@@ -16,6 +16,10 @@ Default, Slate, Yes
 
 * Adapt metadata, change font, use antialiased (css property that makes some fonts easier to read)
 
-* frtom https://github.com/adrianhajdin/ai_saas_app/blob/main/README.md get tailwind config and paste it locally
+* from https://github.com/adrianhajdin/ai_saas_app/blob/main/README.md get tailwind config snippet and paste it locally
 
-* 
+* the same for globals.css
+
+* the same for public folders (that contains images). Download it. Unzip it. And use it a a public folder for the project. move favicon.ico into app folder
+
+* Try out Arc navigator
