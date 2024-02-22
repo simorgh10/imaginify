@@ -138,4 +138,24 @@ const ImageSchema = new Schema({
   + then will send that data over to event porocessing directly to our database so that we can create a new user within our database and sink those users up
 * thus, connect clerk with webhooks to our mongodb database 
 * the easiest way will require us to immediately deploy our app
-* 
+
+* after committing
+```
+git branch -M main
+git remote add origin https://github.com/simorgh10/imaginify.git
+git push -u origin main
+```
+* then proceed with all the steps to deploy on Vercel
+* we need the url of the deployed app
+https://papaye-imaginify.vercel.app/
+
+* go to doc page for syncing clerk to backend data with webhooks https://clerk.com/docs/users/sync-data#enable-webhooks
+  1. got to clerk > webhooks > add endpoint > enter the endpoint url [vercel app url]/api/webhooks/clerk. In Message filtering section check user checkboxes
+  2. Also copy the signing secret into .env.local WEBHOOK_SECRET
+  3. unterstand the payload, 
+  4. install the svix package (provides package for verifying the webhook signature)
+    > npm install svix
+  5. create endpoint in your app. Copy it from README snippets into app/api/webhooks/clerk/route.ts
+  6. Add endpoint to middleware. Add /api/webhooks/clerk to publicRoutes
+
+* Test webhooks. Commit & push to github code then deploy
