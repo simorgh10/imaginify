@@ -158,4 +158,16 @@ https://papaye-imaginify.vercel.app/
   5. create endpoint in your app. Copy it from README snippets into app/api/webhooks/clerk/route.ts
   6. Add endpoint to middleware. Add /api/webhooks/clerk to publicRoutes
 
-* Test webhooks. Commit & push to github code then deploy
+* Test webhooks. Commit & push to github code then deploy. Vercel automatically takes notes and start building it. We have to make sure the new env variable gets added to the env variables as well. Then redeploy your latest commit.
+
+* On localhost, sign up woth a new user you haven't used before. Clerk this time lets our app know, hey this tiume a new uer is created, please add it to your db as well.
+* WORKED !!! Database > Cluster0 > collections > users a user has been created. I checked also that the mongodb user docuùent _id has been added to clerk user public metadata (see route.ts. Still don't know what is the need for that.)
+
+
+* now we'll create the add image form which allows our uer to add a new image transformations
+* In Add TransformationTypePage, ...
+* components/shared/Header.tsx
+
+* components/shared/TransformationForm.tsx
+* build with shadcn and Zod
+* 
