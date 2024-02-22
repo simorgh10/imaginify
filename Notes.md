@@ -58,4 +58,18 @@ Default, Slate, Yes
 * then customize auth page -> Branding, set Application Name and upload logo and icon
 * set the appearance of ClerkProvider
 * Note that auth component is centered thanks to user defined auth class (see globals.css) that uses uer defined flex-center class
-* 
+
+# Layout sidebar & Mobile navigation
+* components/shared
+* src/constants/index.ts
+* get t from README
+* usePathname hook coming from next/navigation
+* add shadcn button
+
+> npx shadcn-ui@latest add button
+
+* for mobile nav install another shadcn component called a sheet
+> npx shadcn-ui@latest add sheet
+* Extends the dialog component to display content that complements the main content of the screen
+
+
