@@ -121,7 +121,21 @@ const ImageSchema = new Schema({
 
 * transaction created as additional reference between user and Image, because we have to keep track of the credits.
 
+# Server Actions & Webhook
 
+* first functionality: creating, updating & deleting users
+* lib/actions/uer.actions.ts
+* copy from README
+* Unlike what I've seen in other projects, here actions.ts is noit created in routes folders but in lib folder
 
+* override the complete utils.ts file from README
+* Get src/types/index.d.ts from README snippets
 
+> npm install qs
 
+* use webhooks to sync data between clerk users and backend mongo user:
+  + Clerk will trigger an event once a user signs up with a new clerk account then it will make a request with a payload containing all of that juicy clerk user data (firstname, lastname, hashedpassword, ...)
+  + then will send that data over to event porocessing directly to our database so that we can create a new user within our database and sink those users up
+* thus, connect clerk with webhooks to our mongodb database 
+* the easiest way will require us to immediately deploy our app
+* 
