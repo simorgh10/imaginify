@@ -72,4 +72,56 @@ Default, Slate, Yes
 > npx shadcn-ui@latest add sheet
 * Extends the dialog component to display content that complements the main content of the screen
 
+# Database & Models Setup
+* MongoDB Atlas
+* signup, create deployment, choose user and password, go to network access > add IP access List ENtry > Allow access from anywhere > confirm, then overview, connect > select drivers > get nstall command and connection string
+
+> npm install mongodb mongoose
+
+* also installed mongoose
+
+* add MONGODB_URL to the .env.local
+
+* add lib > database > mongoose.ts
+
+* In Next js, you connect to the databse on every request or server action,; because nextj apps run in a serverless environment. serverless functions are stateless meaning they start up to handle requests then shut down after.
+
+* ENsures that each request is handled independently, allowing for better scalability, and reliability, as there is no need to manage persistent connections axcross many instances which works well with scalable and flexble nature of mongodb.
+* But doing that means too many mongodb connections open for each and every action we perform on server side
+* so we'll resoirt to caching our connections
+
+* to create a model image.model.ts
+
+* how NextJS caches things if execution is serverless ?
+* || vs ??
+
+* used ChatGPT to create interface for frontend
+```
+Create an IImage interface based off of the following ImageSchema:
+
+const ImageSchema = new Schema({
+  title: { type: String, required: true },
+  transformationType: { type: String, required: true },
+  publicId: { type: String, required: true },
+  secureUrl: { type: URL, required: true },
+  width: { type: Number },
+  height: { type: Number },
+  config: { type: Object },
+  transformationUrl: { type: URL },
+  aspectRatio: { type: String },
+  color: { type: String },
+  prompt: { type: String },
+  author: { type: Schema.Types.ObjectId, ref: "User" },
+  createdAt: { type: Date, default: Date.now },
+  updatedAt: { type: Date, default: Date.now },
+});
+```
+
+* Same for User, and Transaction models that you can copy from README snippets
+
+* transaction created as additional reference between user and Image, because we have to keep track of the credits.
+
+
+
+
 
