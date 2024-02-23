@@ -211,4 +211,7 @@ https://papaye-imaginify.vercel.app/
 ```
 import { PlaceholderValue } from "next/dist/shared/lib/get-img-props";
 ```
+
+
+# Transformed Image Components
 * 
