@@ -190,4 +190,25 @@ https://papaye-imaginify.vercel.app/
 
 * New React knowledge: A set... from ueState can take a function ((prevState: S) => S) as argument
 
+# Cloudinary Media Uploader
+* https://console.cloudinary.com/
+
+> npm install next-cloudinary
+
+* get keys, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET, NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME
+* settings > Upload > Enable Unsigned uploading then Add upload Preset
+* name jsm_imaginify, folder imaginify, 
+* Media Analysis and AI, turn on Enable Google Auto Tagging and set to somewhere around 0,5
+* Explore, Add ons, Cloud.. AI Background removal free, Google Auto Tagging free
+
+* We'll use 2 features. Cloudinary upload widgets + cloudinary image.
+* shared/MediaUploader.tsx
+
+> npx shadcn-ui@latest add toast
+
+* CldUploadWidget
+* What's this ?
+```
+import { PlaceholderValue } from "next/dist/shared/lib/get-img-props";
+```
 * 
