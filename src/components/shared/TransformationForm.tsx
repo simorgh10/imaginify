@@ -4,6 +4,14 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -22,14 +30,6 @@ import {
   transformationTypes,
 } from "@/constants";
 import { CustomField } from "./CustomField";
-
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { useEffect, useState, useTransition } from "react";
 import { AspectRatioKey, debounce, deepMergeObjects } from "@/lib/utils";
 import MediaUploader from "./MediaUploader";
@@ -69,11 +69,11 @@ const TransformationForm = ({
   const initialValues =
     data && action === "Update"
       ? {
-          title: data.title,
-          aspectRatio: data.aspectRatio,
-          color: data.color,
-          prompt: data.prompt,
-          publicId: data.publicId,
+          title: data?.title,
+          aspectRatio: data?.aspectRatio,
+          color: data?.color,
+          prompt: data?.prompt,
+          publicId: data?.publicId,
         }
       : defaultValues;
 
@@ -85,8 +85,6 @@ const TransformationForm = ({
 
   // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-
     setIsSubmitting(true);
 
     if (data || image) {
@@ -112,7 +110,6 @@ const TransformationForm = ({
       };
 
       if (action === "Add") {
-        console.log("Hello 1", imageData);
         try {
           const newImage = await addImage({
             image: imageData,
@@ -120,13 +117,14 @@ const TransformationForm = ({
             path: "/",
           });
 
-          console.log("Hello 2", newImage);
           if (newImage) {
             form.reset();
             setImage(data);
             router.push(`/transformations/${newImage._id}`);
           }
-        } catch {}
+        } catch (error) {
+          console.log(error);
+        }
       }
 
       if (action === "Update") {
@@ -143,7 +141,9 @@ const TransformationForm = ({
           if (updatedImage) {
             router.push(`/transformations/${updatedImage._id}`);
           }
-        } catch {}
+        } catch (error) {
+          console.log(error);
+        }
       }
     }
 
@@ -155,6 +155,7 @@ const TransformationForm = ({
     onChangeField: (value: string) => void
   ) => {
     const imageSize = aspectRatioOptions[value as AspectRatioKey];
+
     setImage((prevState: any) => ({
       ...prevState,
       aspectRatio: imageSize.aspectRatio,
@@ -181,17 +182,20 @@ const TransformationForm = ({
           [fieldName === "prompt" ? "prompt" : "to"]: value,
         },
       }));
+    }, 1000)();
 
-      return onChangeField(value);
-    }, 1000);
+    return onChangeField(value);
   };
 
   const onTransformHandler = async () => {
     setIsTransforming(true);
+
     setTransformationConfig(
       deepMergeObjects(newTransformation, transformationConfig)
     );
+
     setNewTransformation(null);
+
     startTransition(async () => {
       await updateCredits(userId, creditFee);
     });
@@ -199,7 +203,7 @@ const TransformationForm = ({
 
   useEffect(() => {
     if (image && (type === "restore" || type === "removeBackground")) {
-      setNewTransformation(transformationType.config)
+      setNewTransformation(transformationType.config);
     }
   }, [image, transformationType.config, type]);
 
@@ -226,6 +230,7 @@ const TransformationForm = ({
                 onValueChange={(value) =>
                   onSelectFieldHandler(value, field.onChange)
                 }
+                value={field.value}
               >
                 <SelectTrigger className="select-field">
                   <SelectValue placeholder="Select size" />
@@ -281,7 +286,7 @@ const TransformationForm = ({
                       onInputChangeHandler(
                         "color",
                         e.target.value,
-                        type,
+                        "recolor",
                         field.onChange
                       )
                     }
@@ -325,7 +330,7 @@ const TransformationForm = ({
             disabled={isTransforming || newTransformation === null}
             onClick={onTransformHandler}
           >
-            {isTransforming ? "Transforming..." : "Apply transformation"}
+            {isTransforming ? "Transforming..." : "Apply Transformation"}
           </Button>
           <Button
             type="submit"
@@ -335,24 +340,6 @@ const TransformationForm = ({
             {isSubmitting ? "Submitting..." : "Save Image"}
           </Button>
         </div>
-
-        {/* <FormField
-          control={form.control}
-          name="username"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Username</FormLabel>
-              <FormControl>
-                <Input placeholder="shadcn" {...field} />
-              </FormControl>
-              <FormDescription>
-                This is your public display name.
-              </FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <Button type="submit">Submit</Button> */}
       </form>
     </Form>
   );

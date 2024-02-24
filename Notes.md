@@ -222,3 +222,9 @@ import { PlaceholderValue } from "next/dist/shared/lib/get-img-props";
 * InsufficientCreditsModal
 
 > npx shadcn-ui@latest add alert-dialog
+
+# Homepage + Search & Pagination
+
+> npx shadcn-ui@latest add pagination
+
+> npm i cloudinary
