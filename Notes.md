@@ -228,3 +228,7 @@ import { PlaceholderValue } from "next/dist/shared/lib/get-img-props";
 > npx shadcn-ui@latest add pagination
 
 > npm i cloudinary
+
+# Image details, Update é Delete Image
+* A component that has an event handler (eg onClick) has to be a client component
+* 
