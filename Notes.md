@@ -103,7 +103,7 @@ const ImageSchema = new Schema({
   title: { type: String, required: true },
   transformationType: { type: String, required: true },
   publicId: { type: String, required: true },
-  secureUrl: { type: URL, required: true },
+  secureURL: { type: URL, required: true },
   width: { type: Number },
   height: { type: Number },
   config: { type: Object },
@@ -215,3 +215,10 @@ import { PlaceholderValue } from "next/dist/shared/lib/get-img-props";
 
 # Transformed Image Components
 * 
+
+# Image Server Action
+* image.action.ts server actions add/update/delete/getById
+
+* InsufficientCreditsModal
+
+> npx shadcn-ui@latest add alert-dialog
