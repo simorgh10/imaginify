@@ -243,4 +243,6 @@ import { PlaceholderValue } from "next/dist/shared/lib/get-img-props";
 * 2 new webhooks in stripe
   + endpoint url same as clerk just replace clerk with stripe. seleft event checkout.session.completed. add evenet then add endpoint
   + copy signin secret STRIPE_WEBHOOK_SECRET
-  + 
+
+# Final Deployment
+* You can debug errors by seeing logs on Vercel
