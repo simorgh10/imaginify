@@ -232,3 +232,15 @@ import { PlaceholderValue } from "next/dist/shared/lib/get-img-props";
 # Image details, Update é Delete Image
 * A component that has an event handler (eg onClick) has to be a client component
 * 
+
+# Checkout & pay with Stripe
+* Create a stripe account, head to developers > API keys
+
+> npm i stripe @stripe/stripe-js
+
+* transaction.actions.ts
+
+* 2 new webhooks in stripe
+  + endpoint url same as clerk just replace clerk with stripe. seleft event checkout.session.completed. add evenet then add endpoint
+  + copy signin secret STRIPE_WEBHOOK_SECRET
+  + 
